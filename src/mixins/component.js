@@ -41,7 +41,8 @@ module.exports = {
             React.PropTypes.string,
             React.PropTypes.array,
             React.PropTypes.object
-        ])
+        ]),
+        generateFieldUid: React.PropTypes.func
     },
 
     getDefaultProps: function() {
@@ -119,10 +120,21 @@ module.exports = {
         if (this.props.id) {
             return this.props.id;
         }
+
+        const sanitizedName = this.props.name.split('[').join('_').replace(']', '');
+
+        if (this.context.generateFieldUid) {
+            if (!this.fieldUid) {
+                this.fieldUid = this.context.generateFieldUid(sanitizedName);
+            }
+
+            return this.fieldUid;
+        }
+
         var label = (typeof this.props.label === 'undefined' ? '' : this.props.label);
         return [
             'frc',
-            this.props.name.split('[').join('_').replace(']', ''),
+            sanitizedName,
             this.hashString(JSON.stringify(label))
         ].join('-');
     },

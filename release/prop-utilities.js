@@ -8,11 +8,7 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 
 // Removes component props that shouldn't be set on the form control.
 var cleanProps = function cleanProps(props) {
-    var
-
-    // These props come from formsy-react
-    // https://github.com/christianalfoni/formsy-react/blob/6b167cbfe15a72430ff475a92a70273e67a663f5/src/main.js#L441
-    mapping = props.mapping;
+    var mapping = props.mapping;
     var validationErrors = props.validationErrors;
     var onSubmit = props.onSubmit;
     var onValid = props.onValid;
@@ -24,15 +20,9 @@ var cleanProps = function cleanProps(props) {
     var preventExternalInvalidation = props.preventExternalInvalidation;
     var onSuccess = props.onSuccess;
     var onError = props.onError;
-    var
-
-    // These come from formsy-react, too?
-    validationError = props.validationError;
+    var validationError = props.validationError;
     var validations = props.validations;
-    var
-
-    // These props are used by this library.
-    addonAfter = props.addonAfter;
+    var addonAfter = props.addonAfter;
     var addonBefore = props.addonBefore;
     var buttonAfter = props.buttonAfter;
     var buttonBefore = props.buttonBefore;

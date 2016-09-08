@@ -20,6 +20,20 @@ var Select = React.createClass({
 
     mixins: [Formsy.Mixin, ComponentMixin],
 
+    componentDidMount: function componentDidMount() {
+        // Temporary workaround for IE Edge until the following is resovled:
+        // - https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/8794503/
+        // - https://github.com/facebook/react/issues/7655
+        if (this.element && this.element.selectedIndex >= 0) {
+            var options = this.element.options;
+            var selectedIndex = this.element.selectedIndex;
+            var tempIndex = (selectedIndex + 1) % options.length;
+
+            options[tempIndex].selected = true;
+            options[selectedIndex].selected = true;
+        }
+    },
+
     changeValue: function changeValue(event) {
         var target = event.currentTarget;
         var value;
